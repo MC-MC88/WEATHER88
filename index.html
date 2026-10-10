@@ -574,11 +574,7 @@
                 // Reverse geocode to get city name
                 try {
                     const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=&latitude=${lat}&longitude=${lon}&count=1&language=en&format=json`;
-                    // Open-Meteo doesn't do reverse geocoding via this endpoint,
-                    // so we'll use a different approach: just use coordinates or a generic name.
-                    // Actually, Open-Meteo Geocoding API is forward-only.
-                    // We can use the coordinates as the location name, or fetch from another API.
-                    // For simplicity, we'll use "My Location" or fetch from BigDataCloud (free, no key).
+                    // .
                     
                     const reverseUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`;
                     const revResponse = await fetch(reverseUrl);
@@ -595,7 +591,7 @@
             },
             (error) => {
                 console.warn('Geolocation denied or failed:', error.message);
-                // Fallback to a default city (e.g., Kyiv, as in the screenshot)
+                // Fallback to a default city 
                 locationTextEl.textContent = 'Location access denied. Using default: Kyiv';
                 fetchWeather(50.4501, 30.5234, 'Kyiv, Ukraine');
             }
@@ -658,7 +654,7 @@
     // (Optional, but good for UX. We'll just rely on the geolocation callback)
     setTimeout(() => {
         if (locationTextEl.textContent === 'Detecting location...') {
-            // Still detecting, maybe user hasn't responded to prompt. Do nothing.
+          
             // Or load a default. Let's load Kyiv as a fallback.
             // fetchWeather(50.4501, 30.5234, 'Kyiv, Ukraine');
         }
